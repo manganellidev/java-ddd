@@ -1,9 +1,15 @@
 package com.manga.ddd.logic.product;
 
 import java.util.Arrays;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-final class TypeCode {
+@Embeddable
+public final class TypeCode {
+    @Column(name = "type_code")
     private String value;
+
+    private TypeCode() { }
 
     private TypeCode(String value) {
         this.value = value;
@@ -14,6 +20,10 @@ final class TypeCode {
             throw new RuntimeException("typeCode informed is not valid.");
 
         return new TypeCode(value);
+    }
+
+    public String value() {
+        return this.value;
     }
 
     private static boolean isValid(String value) {

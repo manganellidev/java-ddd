@@ -1,9 +1,18 @@
 package com.manga.ddd.logic.common;
 
+import com.manga.ddd.logic.converters.UuidConverter;
 import java.util.Objects;
 import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public abstract class Entity {
+    @Id
+    @Convert(converter = UuidConverter.class)
+    @Column(columnDefinition = "UUID")
     public UUID id;
 
     public UUID getId() {

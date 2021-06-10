@@ -1,12 +1,29 @@
 package com.manga.ddd.logic.product;
 
-final class Code {
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
+public final class Code {
+    @Column(name = "code", length = 30)
     private String value;
+    @Column(name = "code_desc", length = 200)
     private String description;
+
+    private Code() {
+    }
 
     private Code(String value, String description) {
         this.value = value;
         this.description = description;
+    }
+
+    public String value() {
+        return this.value;
+    }
+
+    public String description() {
+        return this.description;
     }
 
     public static Code create(String value) {
